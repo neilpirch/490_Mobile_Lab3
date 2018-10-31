@@ -52,11 +52,19 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        
+        TwitterAuthConfig authConfig = new TwitterAuthConfig("Ag0J7HdOaIEnNJVvTpxRRyI14",
+                "rpGC6PtxLCIuzOpUP4qnkI7EWMM4cBbzdlL5bPNPSbCSoJjk1M");
+        Fabric.with(this, new TwitterCore(authConfig));
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         myFacebookCallbackManager = CallbackManager.Factory.create();
 
         AppEventsLogger.activateApp(this);
+
         setContentView(R.layout.activity_login);
+
         myFacebookSignInButton = (LoginButton)findViewById(R.id.facebook_login_button);
         myFacebookSignInButton.registerCallback(myFacebookCallbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -91,20 +99,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        TwitterAuthConfig authConfig = new TwitterAuthConfig("Ag0J7HdOaIEnNJVvTpxRRyI14",
-                "rpGC6PtxLCIuzOpUP4qnkI7EWMM4cBbzdlL5bPNPSbCSoJjk1M");
-        Fabric.with(this, new TwitterCore(authConfig));
-
         myTwitterSignInButton = (TwitterLoginButton)findViewById(R.id.twitter_sign_in_button);
         myTwitterSignInButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(final Result<TwitterSession> result) {
-                // handleSignInResult(...);
+                handleSignInResult(new Callable<Void>() {
+                    @Override
+                    public Void call() throws Exception {
+                        TwitterCore.getInstance().logOut();
+                        return null;
+                    }
+                });
             }
 
             @Override
             public void failure(TwitterException e) {
-                // handleSignInResult(...);
+                Log.d(LoginActivity.class.getCanonicalName(), e.getMessage());
+                handleSignInResult(null);
             }
         });
     }
