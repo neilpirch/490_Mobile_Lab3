@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Social Login App</string>
+    <string name="facebook_app_id">2251270834902729</string>
+    <string name="fb_login_protocol_scheme">fb2251270834902729</string>
+    <string name="login_error">Login Failed</string>
+    <string name="txt_username">Duncan MacLoed</string>
+    <string name="txt_user_email">duncan@highlander.com</string>
+    <string name="txt_user_university">Washington State University</string>
+    <string name="university">University</string>
+    <string name="email_address">Email Address</string>
+    <string name="user_name">User Name</string>
+    <string name="profile_details">Profile Details</string>
+
+</resources>
