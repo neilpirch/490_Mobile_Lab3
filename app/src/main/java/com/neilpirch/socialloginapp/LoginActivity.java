@@ -1,5 +1,6 @@
 package com.neilpirch.socialloginapp;
 
+import com.facebook.AccessToken;
 import com.neilpirch.socialloginapp.Application;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -53,15 +54,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        
+
+
         TwitterAuthConfig authConfig = new TwitterAuthConfig("Ag0J7HdOaIEnNJVvTpxRRyI14",
                 "rpGC6PtxLCIuzOpUP4qnkI7EWMM4cBbzdlL5bPNPSbCSoJjk1M");
         Fabric.with(this, new TwitterCore(authConfig));
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+
         myFacebookCallbackManager = CallbackManager.Factory.create();
 
-        AppEventsLogger.activateApp(this);
 
         setContentView(R.layout.activity_login);
 

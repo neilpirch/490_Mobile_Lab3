@@ -5,8 +5,8 @@
     <string name="login_error">Login Failed</string>
     <string name="txt_username">Duncan MacLoed</string>
     <string name="txt_user_email">duncan@highlander.com</string>
-    <string name="txt_user_university">Washington State University</string>
-    <string name="university">University</string>
+    <string name="txt_user_gender">Male</string>
+    <string name="gender">Gender</string>
     <string name="email_address">Email Address</string>
     <string name="user_name">User Name</string>
     <string name="profile_details">Profile Details</string>
